@@ -1,6 +1,7 @@
 package br.com.zupacademy.proposta.proposta.proposta;
 
 import br.com.zupacademy.proposta.proposta.proposta.config.CPFOrCNPJ;
+import br.com.zupacademy.proposta.proposta.proposta.config.UniqueDocument;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.databind.annotation.JsonTypeIdResolver;
 
@@ -11,6 +12,7 @@ public class PropostaRequest {
 
     @CPFOrCNPJ
     @NotBlank
+    @UniqueDocument
     private String documento;
     @Email
     @NotBlank
@@ -45,6 +47,10 @@ public class PropostaRequest {
         this.cidade = cidade;
         this.estado = estado;
         this.salario = salario;
+    }
+
+    public String getDocumento() {
+        return documento;
     }
 
     public Proposta converte() {

@@ -24,6 +24,11 @@ public class PropostaController {
 
     @PostMapping
     public ResponseEntity cadastraResposta(@RequestBody @Valid PropostaRequest request, UriComponentsBuilder uriComponentsBuilder){
+        // foram implementadas duas formas de verificar se já existe proposta para o documento recebido na request, uma é esse if abaixo e a outra é anotação
+        //UniqueDocument, porém a UniqueDocument fere o contrato da anotação... mas tem uma grande vantagem que é a limpeza do dado para validação.
+//        if (propostaRepository.findByDocumento(request.getDocumento()).isPresent()){
+//            return ResponseEntity.unprocessableEntity().build();
+//        }
         Proposta novaProposta = request.converte();
         propostaRepository.save(novaProposta);
         URI uri = uriComponentsBuilder.path("/proposta/{id}").buildAndExpand(novaProposta.getId()).toUri();
