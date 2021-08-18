@@ -1,9 +1,7 @@
 package br.com.zupacademy.proposta.proposta.proposta;
 
 import br.com.zupacademy.proposta.proposta.proposta.config.CPFOrCNPJ;
-import br.com.zupacademy.proposta.proposta.proposta.config.UniqueDocument;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.databind.annotation.JsonTypeIdResolver;
 
 import javax.validation.constraints.*;
 import java.math.BigDecimal;
@@ -12,7 +10,6 @@ public class PropostaRequest {
 
     @CPFOrCNPJ
     @NotBlank
-    @UniqueDocument
     private String documento;
     @Email
     @NotBlank
@@ -52,8 +49,12 @@ public class PropostaRequest {
     public String getDocumento() {
         return documento;
     }
+    public String limpa(String documento){
+        return documento.replace(".", "").replace("-", "").replace("/", "");
+    }
 
     public Proposta converte() {
-        return new Proposta(documento, email, nome , new Endereco(rua, numero, complemento, bairro, cidade, estado), salario);
+        return new Proposta(limpa(documento), email, nome , new Endereco(rua, numero, complemento, bairro, cidade, estado), salario);
     }
+
 }

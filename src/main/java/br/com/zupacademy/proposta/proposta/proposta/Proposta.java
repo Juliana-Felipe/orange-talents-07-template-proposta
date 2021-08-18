@@ -1,5 +1,6 @@
 package br.com.zupacademy.proposta.proposta.proposta;
 
+import br.com.zupacademy.proposta.proposta.client.ResultadoSolicitacao;
 import br.com.zupacademy.proposta.proposta.proposta.config.CPFOrCNPJ;
 
 import javax.persistence.*;
@@ -14,6 +15,7 @@ public class Proposta {
     private long id;
     @CPFOrCNPJ
     @NotBlank
+    @Column(unique = true)
     private String documento;
     @Email
     @NotBlank
@@ -26,6 +28,8 @@ public class Proposta {
     @NotNull
     @Positive
     private BigDecimal salario;
+    @Enumerated(EnumType.STRING)
+    private ResultadoAvalicação resultadoAvalicação;
 
     public Proposta(String documento, String email, String nome, Endereco endereco, BigDecimal salario) {
         this.documento = documento;
@@ -39,8 +43,20 @@ public class Proposta {
     public Proposta() {
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
+    }
+
+    public String getDocumento() {
+        return documento;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void atualizaResultadoAvaliacao(ResultadoSolicitacao resultadoSolicitacao) {
+        this.resultadoAvalicação = resultadoSolicitacao.getResultado();
     }
 }
 
