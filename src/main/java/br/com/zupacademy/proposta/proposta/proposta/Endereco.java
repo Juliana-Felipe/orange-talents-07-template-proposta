@@ -30,4 +30,28 @@ public class Endereco {
     @Deprecated
     public Endereco() {
     }
+
+    public String getRua() {
+        return rua;
+    }
+
+    public int getNumero() {
+        return numero;
+    }
+
+    public String getComplemento() {
+        return complemento;
+    }
+
+    public String getBairro() {
+        return bairro;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
 }

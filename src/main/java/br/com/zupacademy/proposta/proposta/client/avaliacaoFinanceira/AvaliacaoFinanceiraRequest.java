@@ -12,7 +12,6 @@ public class AvaliacaoFinanceiraRequest {
     @NotBlank
     private String idProposta;
 
-    @JsonCreator
     public AvaliacaoFinanceiraRequest(String documento, String nome, String idProposta) {
         this.documento = documento;
         this.nome = nome;

@@ -15,13 +15,15 @@ public class AvaliacaoFinanceiraResponse {
     @NotBlank
     private String idProposta;
 
-    @JsonCreator
-
-    public AvaliacaoFinanceiraResponse(String documento, String nome, ResultadoSolicitacao resultadoSolicitacao, String idProposta) {
+      public AvaliacaoFinanceiraResponse(String documento, String nome, ResultadoSolicitacao resultadoSolicitacao, String idProposta) {
         this.documento = documento;
         this.nome = nome;
         this.resultadoSolicitacao = resultadoSolicitacao;
         this.idProposta = idProposta;
+    }
+
+    public ResultadoSolicitacao getResultadoSolicitacao() {
+        return resultadoSolicitacao;
     }
 
     public String getDocumento() {
@@ -30,10 +32,6 @@ public class AvaliacaoFinanceiraResponse {
 
     public String getNome() {
         return nome;
-    }
-
-    public ResultadoSolicitacao getResultadoSolicitacao() {
-        return resultadoSolicitacao;
     }
 
     public String getIdProposta() {

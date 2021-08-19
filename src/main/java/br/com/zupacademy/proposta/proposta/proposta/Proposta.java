@@ -29,7 +29,7 @@ public class Proposta {
     @Positive
     private BigDecimal salario;
     @Enumerated(EnumType.STRING)
-    private ResultadoAvalicacao resultadoAvalicação;
+    private ResultadoAvalicacao resultadoAvalicacao;
     private String numeroCartao;
 
     public Proposta(String documento, String email, String nome, Endereco endereco, BigDecimal salario) {
@@ -38,11 +38,18 @@ public class Proposta {
         this.nome = nome;
         this.endereco = endereco;
         this.salario = salario;
-        this.resultadoAvalicação = ResultadoAvalicacao.EM_ESPERA;
+        this.resultadoAvalicacao = ResultadoAvalicacao.EM_ESPERA;
     }
 
     @Deprecated
     public Proposta() {
+    }
+
+    public void atualizaResultadoAvaliacao(ResultadoSolicitacao resultadoSolicitacao) {
+        this.resultadoAvalicacao = resultadoSolicitacao.getResultado();
+    }
+    public void atualizaNumeroCartao(String numeroCartao) {
+        this.numeroCartao = numeroCartao;
     }
 
     public Long getId() {
@@ -57,11 +64,24 @@ public class Proposta {
         return nome;
     }
 
-    public void atualizaResultadoAvaliacao(ResultadoSolicitacao resultadoSolicitacao) {
-        this.resultadoAvalicação = resultadoSolicitacao.getResultado();
+    public String getEmail() {
+        return email;
     }
-    public void atualizaNumeroCartao(String numeroCartao) {
-        this.numeroCartao = numeroCartao;
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public BigDecimal getSalario() {
+        return salario;
+    }
+
+    public ResultadoAvalicacao getResultadoAvalicacao() {
+        return resultadoAvalicacao;
+    }
+
+    public String getNumeroCartao() {
+        return numeroCartao;
     }
 }
 

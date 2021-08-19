@@ -18,13 +18,13 @@ import java.net.URI;
 
 @RestController
 @RequestMapping("/proposta")
-public class PropostaController {
+public class CadastroPropostaController {
 
   PropostaRepository propostaRepository;
 
    private GerarAvaliacao gerarAvaliacao;
 
-    public PropostaController(PropostaRepository propostaRepository, GerarAvaliacao gerarAvaliacao) {
+    public CadastroPropostaController(PropostaRepository propostaRepository, GerarAvaliacao gerarAvaliacao) {
         this.propostaRepository = propostaRepository;
         this.gerarAvaliacao = gerarAvaliacao;
     }

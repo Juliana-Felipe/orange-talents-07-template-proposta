@@ -15,8 +15,12 @@ import java.util.List;
 
 @RestControllerAdvice
 public class ErroDeValidacao {
-    @Autowired
+
     private MessageSource messageSource;
+
+    public ErroDeValidacao(MessageSource messageSource) {
+        this.messageSource = messageSource;
+    }
 
     @ResponseStatus(code = HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
