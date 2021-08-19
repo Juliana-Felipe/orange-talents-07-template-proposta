@@ -1,6 +1,6 @@
 package br.com.zupacademy.proposta.proposta.proposta;
 
-import br.com.zupacademy.proposta.proposta.client.ResultadoSolicitacao;
+import br.com.zupacademy.proposta.proposta.client.avaliacaoFinanceira.ResultadoSolicitacao;
 import br.com.zupacademy.proposta.proposta.proposta.config.CPFOrCNPJ;
 
 import javax.persistence.*;
@@ -29,7 +29,8 @@ public class Proposta {
     @Positive
     private BigDecimal salario;
     @Enumerated(EnumType.STRING)
-    private ResultadoAvalicação resultadoAvalicação;
+    private ResultadoAvalicacao resultadoAvalicação;
+    private String numeroCartao;
 
     public Proposta(String documento, String email, String nome, Endereco endereco, BigDecimal salario) {
         this.documento = documento;
@@ -37,6 +38,7 @@ public class Proposta {
         this.nome = nome;
         this.endereco = endereco;
         this.salario = salario;
+        this.resultadoAvalicação = ResultadoAvalicacao.EM_ESPERA;
     }
 
     @Deprecated
@@ -57,6 +59,9 @@ public class Proposta {
 
     public void atualizaResultadoAvaliacao(ResultadoSolicitacao resultadoSolicitacao) {
         this.resultadoAvalicação = resultadoSolicitacao.getResultado();
+    }
+    public void atualizaNumeroCartao(String numeroCartao) {
+        this.numeroCartao = numeroCartao;
     }
 }
 

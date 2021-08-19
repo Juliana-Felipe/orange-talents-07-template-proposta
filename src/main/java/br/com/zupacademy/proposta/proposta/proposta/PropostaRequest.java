@@ -2,9 +2,13 @@ package br.com.zupacademy.proposta.proposta.proposta;
 
 import br.com.zupacademy.proposta.proposta.proposta.config.CPFOrCNPJ;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.constraints.*;
 import java.math.BigDecimal;
+import java.util.Optional;
 
 public class PropostaRequest {
 
@@ -49,12 +53,17 @@ public class PropostaRequest {
     public String getDocumento() {
         return documento;
     }
-    public String limpa(String documento){
+
+    public String limpa(String documento) {
         return documento.replace(".", "").replace("-", "").replace("/", "");
     }
 
-    public Proposta converte() {
-        return new Proposta(limpa(documento), email, nome , new Endereco(rua, numero, complemento, bairro, cidade, estado), salario);
+    public Proposta converte(PropostaRepository propostaRepository) {
+        Optional<Proposta> possivelProposta = propostaRepository.findByDocumento(limpa(documento));
+        if (possivelProposta.isPresent()) {
+            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "Uma proposta com esse documento já existe!");
+        }
+        return new Proposta(limpa(documento), email, nome, new Endereco(rua, numero, complemento, bairro, cidade, estado), salario);
     }
 
 }
