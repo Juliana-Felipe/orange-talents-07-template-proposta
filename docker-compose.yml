@@ -22,6 +22,22 @@ services:
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: "1"
       KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
 
+#  apipropostas:
+#    image: 'julianamtf/propostas'
+#    ports:
+#      - 8081:8080
+#    depends_on:
+#      - postgres-proposta
+#    environment:
+#      PROFILE: prod
+#      AVALIACAO_FINANCEIRA_API_URL: http://analise:9999/api
+#      CONSULTA_CARTAO_API_URL: http://contas:8888/api
+#      DB_HOST: postgresproposta
+#      DB_PORT: 5432
+#      DB_NAME: proposta
+#      DB_USER: admin
+#      DB_PASS: 123
+
   postgres:
     image: 'postgres:9.6-alpine'
     volumes:
@@ -33,6 +49,17 @@ services:
       POSTGRES_PASSWORD: password
       POSTGRES_DB: keycloak
       POSTGRES_HOST: postgres
+
+  postgres-proposta:
+    image: 'postgres:9.6-alpine'
+    volumes:
+      - postgres-proposta-volume:/var/lib/postgresql/data
+    ports:
+      - 5433:5432
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: 123
+      POSTGRES_DB: proposta
 
   keycloak:
     image: jboss/keycloak:11.0.0
@@ -138,3 +165,8 @@ volumes:
   grafana-volume:
   prometheus-volume:
   postgres-volume:
+  postgres-proposta-volume:
+
+networks:
+  default:
+     name: rede-microservico-propostas
