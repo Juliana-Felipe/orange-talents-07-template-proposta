@@ -24,13 +24,18 @@ public class DetalhamentoPropostaController {
     }
 
     @GetMapping
-    public ResponseEntity<PropostaResponse> buscaProposta(@RequestParam Long id){
+    public ResponseEntity<PropostaResponse> buscaProposta(@RequestParam Long id) {
         Optional<Proposta> possivelProposta = propostaRepository.findById(id);
-        if(possivelProposta.isEmpty()){
+        if (possivelProposta.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Id não encontrado");
         }
         Proposta propostaEncontrada = possivelProposta.get();
         PropostaResponse response = new PropostaResponse(propostaEncontrada);
+        try {
+            response.setNumeroCartao(propostaEncontrada);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return ResponseEntity.ok(response);
     }
 }

@@ -30,7 +30,7 @@ public class CadastroPropostaController {
     }
 
     @PostMapping
-    public ResponseEntity cadastraResposta(@RequestBody @Valid PropostaRequest request, UriComponentsBuilder uriComponentsBuilder) {
+      public ResponseEntity cadastraResposta(@RequestBody @Valid PropostaRequest request, UriComponentsBuilder uriComponentsBuilder) {
         Proposta novaProposta = request.converte(propostaRepository);
         propostaRepository.save(novaProposta);
         gerarAvaliacao.avaliacaoFinanceira(novaProposta);

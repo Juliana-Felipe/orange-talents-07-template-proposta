@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 
 public class PropostaResponse {
 
+
     private long id;
     private String documento;
     private String email;
@@ -22,7 +23,7 @@ public class PropostaResponse {
         this.endereco = proposta.getEndereco();
         this.salario = proposta.getSalario();
         this.resultadoAvalicacao = proposta.getResultadoAvalicacao().toString();
-        this.numeroCartao = proposta.getCartao().getNumeroCartao();
+        this.numeroCartao = null;
     }
 
     public long getId() {
@@ -55,5 +56,9 @@ public class PropostaResponse {
 
     public String getNumeroCartao() {
         return numeroCartao;
+    }
+
+    public void setNumeroCartao(Proposta proposta) {
+        this.numeroCartao = proposta.getCartao().getNumeroCartao();
     }
 }
