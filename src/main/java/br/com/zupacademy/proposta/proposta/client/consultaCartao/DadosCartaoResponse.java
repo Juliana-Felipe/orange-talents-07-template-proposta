@@ -7,20 +7,20 @@ public class DadosCartaoResponse {
     private String id;
     private LocalDateTime emitidoEm;
     private String titular;
-    private List<Bloqueio> bloqueios;
-    private List<Aviso> avisos;
-    private List<Carteira> carteiras;
-    private List<Parcela> parcelas;
+    private List<BloqueioResponse> bloqueios;
+    private List<AvisoResponse> avisos;
+    private List<CarteiraResponse> carteiras;
+    private List<ParcelaResponse> parcelas;
     private int limite;
-    private Renegociacao renegociacao;
-    private Vencimento vencimento;
+    private RenegociacaoResponse renegociacao;
+    private VencimentoResponse vencimento;
     private String idProposta;
 
     @Deprecated
     public DadosCartaoResponse() {
     }
 
-    public DadosCartaoResponse(String id, LocalDateTime emitidoEm, String titular, List<Bloqueio> bloqueios, List<Aviso> avisos, List<Carteira> carteiras, List<Parcela> parcelas, int limite, Renegociacao renegociacao, Vencimento vencimento, String idProposta) {
+    public DadosCartaoResponse(String id, LocalDateTime emitidoEm, String titular, List<BloqueioResponse> bloqueios, List<AvisoResponse> avisos, List<CarteiraResponse> carteiras, List<ParcelaResponse> parcelas, int limite, RenegociacaoResponse renegociacao, VencimentoResponse vencimento, String idProposta) {
         this.id = id;
         this.emitidoEm = emitidoEm;
         this.titular = titular;
@@ -36,5 +36,45 @@ public class DadosCartaoResponse {
 
     public String getId() {
         return id;
+    }
+
+    public LocalDateTime getEmitidoEm() {
+        return emitidoEm;
+    }
+
+    public String getTitular() {
+        return titular;
+    }
+
+    public List<BloqueioResponse> getBloqueios() {
+        return bloqueios;
+    }
+
+    public List<AvisoResponse> getAvisos() {
+        return avisos;
+    }
+
+    public List<CarteiraResponse> getCarteiras() {
+        return carteiras;
+    }
+
+    public List<ParcelaResponse> getParcelas() {
+        return parcelas;
+    }
+
+    public int getLimite() {
+        return limite;
+    }
+
+    public RenegociacaoResponse getRenegociacao() {
+        return renegociacao;
+    }
+
+    public VencimentoResponse getVencimento() {
+        return vencimento;
+    }
+
+    public String getIdProposta() {
+        return idProposta;
     }
 }

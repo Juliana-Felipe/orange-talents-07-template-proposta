@@ -22,7 +22,7 @@ public class PropostaResponse {
         this.endereco = proposta.getEndereco();
         this.salario = proposta.getSalario();
         this.resultadoAvalicacao = proposta.getResultadoAvalicacao().toString();
-        this.numeroCartao = proposta.getNumeroCartao();
+        this.numeroCartao = proposta.getCartao().getNumeroCartao();
     }
 
     public long getId() {

@@ -1,5 +1,6 @@
 package br.com.zupacademy.proposta.proposta.proposta;
 
+import br.com.zupacademy.proposta.proposta.cartao.Cartao;
 import br.com.zupacademy.proposta.proposta.client.avaliacaoFinanceira.ResultadoSolicitacao;
 import br.com.zupacademy.proposta.proposta.proposta.config.CPFOrCNPJ;
 
@@ -30,9 +31,11 @@ public class Proposta {
     private BigDecimal salario;
     @Enumerated(EnumType.STRING)
     private ResultadoAvalicacao resultadoAvalicacao;
-    private String numeroCartao;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn
+    private Cartao cartao;
 
-    public Proposta(String documento, String email, String nome, Endereco endereco, BigDecimal salario) {
+     public Proposta(String documento, String email, String nome, Endereco endereco, BigDecimal salario) {
         this.documento = documento;
         this.email = email;
         this.nome = nome;
@@ -48,8 +51,8 @@ public class Proposta {
     public void atualizaResultadoAvaliacao(ResultadoSolicitacao resultadoSolicitacao) {
         this.resultadoAvalicacao = resultadoSolicitacao.getResultado();
     }
-    public void atualizaNumeroCartao(String numeroCartao) {
-        this.numeroCartao = numeroCartao;
+    public void atualizaCartao(Cartao cartao) {
+        this.cartao = cartao;
     }
 
     public Long getId() {
@@ -80,8 +83,6 @@ public class Proposta {
         return resultadoAvalicacao;
     }
 
-    public String getNumeroCartao() {
-        return numeroCartao;
-    }
+    public Cartao getCartao() { return cartao; }
 }
 

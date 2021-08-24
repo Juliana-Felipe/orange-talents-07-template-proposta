@@ -1,0 +1,54 @@
+package br.com.zupacademy.proposta.proposta.cartao;
+
+import br.com.zupacademy.proposta.proposta.biometria.Biometria;
+import br.com.zupacademy.proposta.proposta.client.consultaCartao.*;
+import br.com.zupacademy.proposta.proposta.proposta.Proposta;
+import com.sun.istack.NotNull;
+
+import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.util.List;
+
+@Entity
+public class Cartao {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @NotNull
+    private String numeroCartao;
+    private LocalDateTime emitidoEm;
+    private String titular;
+    @OneToMany(mappedBy = "cartao", cascade = CascadeType.ALL)
+    private List<Bloqueio> bloqueios;
+    @OneToMany(mappedBy = "cartao", cascade = CascadeType.ALL)
+    private List<Aviso> avisos;
+    @OneToMany(mappedBy = "cartao", cascade = CascadeType.ALL)
+    private List<Carteira> carteiras;
+    @OneToMany(mappedBy = "cartao", cascade = CascadeType.ALL)
+    private List<Biometria> biometrias;
+    @OneToOne(mappedBy = "cartao", cascade = CascadeType.ALL)
+    private Vencimento vencimento;
+    @OneToOne(mappedBy = "cartao")
+    @NotNull
+    private Proposta proposta;
+    private String proposta_id;
+
+    public Cartao(DadosCartaoResponse response, Proposta proposta) {
+        this.numeroCartao = response.getId();
+        this.emitidoEm = response.getEmitidoEm();
+        this.titular = response.getTitular();
+        this.proposta = proposta;
+        this.proposta_id = response.getIdProposta();
+    }
+
+    public Cartao() {
+    }
+
+    public String getNumeroCartao() {
+        return numeroCartao;
+    }
+
+    public Long getId() {
+        return id;
+    }
+}

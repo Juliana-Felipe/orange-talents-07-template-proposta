@@ -1,5 +1,7 @@
 package br.com.zupacademy.proposta.proposta.client.consultaCartao;
 
+import br.com.zupacademy.proposta.proposta.cartao.Bloqueio;
+import br.com.zupacademy.proposta.proposta.cartao.Cartao;
 import br.com.zupacademy.proposta.proposta.client.avaliacaoFinanceira.ResultadoSolicitacao;
 import br.com.zupacademy.proposta.proposta.proposta.Proposta;
 import br.com.zupacademy.proposta.proposta.proposta.PropostaRepository;
@@ -28,7 +30,7 @@ public class BucarNumeroDoCartao {
             DadosCartaoResponse cartaoResponse = null;
             try {
                 cartaoResponse = consultaCartaoClient.consultaCartao(elegivel.getId());
-                elegivel.atualizaNumeroCartao(cartaoResponse.getId());
+                elegivel.atualizaCartao(new Cartao(cartaoResponse, elegivel));
                 elegivel.atualizaResultadoAvaliacao(ResultadoSolicitacao.CARTAO_ENCONTRADO);
                 propostaRepository.save(elegivel);
             } catch (Exception e) {

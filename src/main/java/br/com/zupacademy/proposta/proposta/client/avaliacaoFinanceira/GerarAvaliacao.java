@@ -9,11 +9,12 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 @Component
 public class GerarAvaliacao {
-private AvaliacaoFinanceiraClient avaliacaoFinanceiraClient;
-private PropostaRepository propostaRepository;
+    private AvaliacaoFinanceiraClient avaliacaoFinanceiraClient;
+    private PropostaRepository propostaRepository;
 
     public GerarAvaliacao(AvaliacaoFinanceiraClient avaliacaoFinanceiraClient, PropostaRepository propostaRepository) {
         this.avaliacaoFinanceiraClient = avaliacaoFinanceiraClient;
@@ -32,8 +33,7 @@ private PropostaRepository propostaRepository;
         } catch (FeignException e) {
             if (e.status() == HttpStatus.UNPROCESSABLE_ENTITY.value()) {
                 proposta.atualizaResultadoAvaliacao(ResultadoSolicitacao.COM_RESTRICAO);
-            }
-            proposta.atualizaResultadoAvaliacao(ResultadoSolicitacao.SEM_RESPOSTA);
+            } else proposta.atualizaResultadoAvaliacao(ResultadoSolicitacao.SEM_RESPOSTA);
         }
 
         propostaRepository.save(proposta);
@@ -49,13 +49,12 @@ private PropostaRepository propostaRepository;
                     proposta.getId().toString());
 
             try {
-               response = avaliacaoFinanceiraClient.avalia(avaliacaoFinanceiraRequest);
-               proposta.atualizaResultadoAvaliacao(response.getResultadoSolicitacao());
+                response = avaliacaoFinanceiraClient.avalia(avaliacaoFinanceiraRequest);
+                proposta.atualizaResultadoAvaliacao(response.getResultadoSolicitacao());
             } catch (FeignException e) {
                 if (e.status() == HttpStatus.UNPROCESSABLE_ENTITY.value()) {
                     proposta.atualizaResultadoAvaliacao(ResultadoSolicitacao.COM_RESTRICAO);
-                }
-                proposta.atualizaResultadoAvaliacao(ResultadoSolicitacao.SEM_RESPOSTA);
+                } else proposta.atualizaResultadoAvaliacao(ResultadoSolicitacao.SEM_RESPOSTA);
             }
 
             propostaRepository.save(proposta);
