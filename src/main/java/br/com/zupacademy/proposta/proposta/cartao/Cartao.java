@@ -1,13 +1,14 @@
 package br.com.zupacademy.proposta.proposta.cartao;
 
 import br.com.zupacademy.proposta.proposta.biometria.Biometria;
-import br.com.zupacademy.proposta.proposta.client.consultaCartao.*;
+import br.com.zupacademy.proposta.proposta.cartao.bloqueio.Bloqueio;
+import br.com.zupacademy.proposta.proposta.client.consultaCartao.DadosCartaoResponse;
 import br.com.zupacademy.proposta.proposta.proposta.Proposta;
 import com.sun.istack.NotNull;
-
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
+import static javax.persistence.CascadeType.*;
 
 @Entity
 public class Cartao {
@@ -26,7 +27,7 @@ public class Cartao {
     private List<Carteira> carteiras;
     @OneToMany(mappedBy = "cartao", cascade = CascadeType.ALL)
     private List<Biometria> biometrias;
-    @OneToOne(mappedBy = "cartao", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "cartao", cascade = {MERGE, PERSIST, REMOVE})
     private Vencimento vencimento;
     @OneToOne(mappedBy = "cartao")
     @NotNull
@@ -51,4 +52,5 @@ public class Cartao {
     public Long getId() {
         return id;
     }
+
 }

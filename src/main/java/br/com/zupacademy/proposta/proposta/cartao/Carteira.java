@@ -19,22 +19,15 @@ public class Carteira {
     @JoinColumn(name = "cartao_id")
     private Cartao cartao;
 
-    public Cartao getCartao() {
-        return cartao;
-    }
-
-    public void setCartao(Cartao cartao) {
-        this.cartao = cartao;
-    }
-
     @Deprecated
     public Carteira() {
     }
 
-    public Carteira(CarteiraResponse carteiraResponse) {
+    public Carteira(CarteiraResponse carteiraResponse, Cartao cartao) {
         this.idExterno = carteiraResponse.getId();
         this.email = carteiraResponse.getEmail();
         this.associadaEm = carteiraResponse.getAssociadaEm();
         this.emissor = carteiraResponse.getEmissor();
+        this.cartao = cartao;
     }
 }

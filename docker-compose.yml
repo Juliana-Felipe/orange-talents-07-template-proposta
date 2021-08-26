@@ -37,6 +37,8 @@ services:
 #      DB_NAME: proposta
 #      DB_USER: admin
 #      DB_PASS: 123
+#      KEYCLOAK_ISSUER_URI: http://keycloak:8080/auth/realms/proposta
+#      KEYCLOAK_JWKS_URI: http://keycloak:8080/auth/realms/proposta/protocol/openid-connect/certs
 
   postgres:
     image: 'postgres:9.6-alpine'

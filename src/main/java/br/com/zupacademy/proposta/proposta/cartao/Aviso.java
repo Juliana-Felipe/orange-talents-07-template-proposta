@@ -19,9 +19,10 @@ public class Aviso {
     public Aviso() {
     }
 
-    public Aviso(AvisoResponse avisoResponse) {
+    public Aviso(AvisoResponse avisoResponse, Cartao cartao) {
         this.validoAte = avisoResponse.getValidoAte();
         this.destino = avisoResponse.getDestino();
+        this.cartao = cartao;
      }
 
 }
