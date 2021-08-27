@@ -49,4 +49,8 @@ public class Bloqueio {
         this.userAgent = userAgent;
         this.ipUsuário = ipUsuário;
     }
+
+    public Cartao getCartao() {
+        return cartao;
+    }
 }

@@ -33,13 +33,15 @@ public class Cartao {
     @NotNull
     private Proposta proposta;
     private String proposta_id;
-
+    @Enumerated(EnumType.STRING)
+    private EstadoDoCartao estadoDoCartao;
     public Cartao(DadosCartaoResponse response, Proposta proposta) {
         this.numeroCartao = response.getId();
         this.emitidoEm = response.getEmitidoEm();
         this.titular = response.getTitular();
         this.proposta = proposta;
         this.proposta_id = response.getIdProposta();
+        this.estadoDoCartao = EstadoDoCartao.LIBERADO;
     }
 
     public Cartao() {
@@ -53,4 +55,7 @@ public class Cartao {
         return id;
     }
 
+    public void alterarEstadoDoCartao(EstadoDoCartao estadoDoCartao) {
+        this.estadoDoCartao = estadoDoCartao;
+    }
 }
