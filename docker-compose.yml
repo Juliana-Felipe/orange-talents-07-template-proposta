@@ -39,6 +39,11 @@ services:
 #      DB_PASS: 123
 #      KEYCLOAK_ISSUER_URI: http://keycloak:8080/auth/realms/proposta
 #      KEYCLOAK_JWKS_URI: http://keycloak:8080/auth/realms/proposta/protocol/openid-connect/certs
+#      ENDPOINTS_EXPOSTOS_INCLUIR=health,info,metrics,prometheus
+#      ENDPOINTS_EXPOSTOS_EXCLUIR=env, beans
+#      HABILITAR_PROMETHEUS=true
+#      NOME_DA_APLICACAO=serviço de proposta producao
+#      AMBIENTE=desenvolvimento
 
   postgres:
     image: 'postgres:9.6-alpine'
