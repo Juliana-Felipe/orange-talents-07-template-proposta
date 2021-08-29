@@ -1,6 +1,7 @@
 package br.com.zupacademy.proposta.proposta.cartao;
 
 import br.com.zupacademy.proposta.proposta.biometria.Biometria;
+import br.com.zupacademy.proposta.proposta.cartao.aviso.Aviso;
 import br.com.zupacademy.proposta.proposta.cartao.bloqueio.Bloqueio;
 import br.com.zupacademy.proposta.proposta.client.consultaCartao.DadosCartaoResponse;
 import br.com.zupacademy.proposta.proposta.proposta.Proposta;

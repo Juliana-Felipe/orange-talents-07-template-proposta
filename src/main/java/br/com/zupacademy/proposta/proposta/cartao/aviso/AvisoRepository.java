@@ -1,4 +1,4 @@
-package br.com.zupacademy.proposta.proposta.cartao;
+package br.com.zupacademy.proposta.proposta.cartao.aviso;
 
 import org.springframework.data.repository.CrudRepository;
 
