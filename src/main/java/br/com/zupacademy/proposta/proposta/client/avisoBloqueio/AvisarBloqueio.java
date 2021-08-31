@@ -49,6 +49,7 @@ public class AvisarBloqueio {
         }
     }
 
+
     public void avisoImediato(Cartao cartao) {
         AvisoBloqueioResponse response = null;
         AvisoBloqueioRequest avisoBloqueioRequest = new AvisoBloqueioRequest("Api Propostas - imediato");
@@ -64,6 +65,9 @@ public class AvisarBloqueio {
         }
         cartaoRepository.save(cartao);
     }
+
+
+
 }
 
 

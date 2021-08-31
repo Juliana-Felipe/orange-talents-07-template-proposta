@@ -8,5 +8,5 @@ import java.util.Optional;
 
 public interface BloqueioRepository extends CrudRepository<Bloqueio,Long> {
     Optional<Bloqueio> findByCartao_Id(Long id);
-
+    Bloqueio findBySistemaResponsavel(String sistema);
 }

@@ -22,7 +22,7 @@ public class Cartao {
     private String titular;
     @OneToMany(mappedBy = "cartao", cascade = CascadeType.ALL)
     private List<Bloqueio> bloqueios;
-    @OneToMany(mappedBy = "cartao", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "cartao", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Aviso> avisos;
     @OneToMany(mappedBy = "cartao", cascade = CascadeType.ALL)
     private List<Carteira> carteiras;
@@ -36,6 +36,9 @@ public class Cartao {
     private String proposta_id;
     @Enumerated(EnumType.STRING)
     private EstadoDoCartao estadoDoCartao;
+    @Enumerated(EnumType.STRING)
+    private NotificacaoDeAviso notificacaoDeAviso;
+
     public Cartao(DadosCartaoResponse response, Proposta proposta) {
         this.numeroCartao = response.getId();
         this.emitidoEm = response.getEmitidoEm();
@@ -43,6 +46,7 @@ public class Cartao {
         this.proposta = proposta;
         this.proposta_id = response.getIdProposta();
         this.estadoDoCartao = EstadoDoCartao.LIBERADO;
+        this.notificacaoDeAviso = NotificacaoDeAviso.USO_PADRAO;
     }
 
     public Cartao() {
@@ -56,7 +60,13 @@ public class Cartao {
         return id;
     }
 
+    public List<Aviso> getAvisos() {
+        return avisos;
+    }
+
     public void alterarEstadoDoCartao(EstadoDoCartao estadoDoCartao) {
         this.estadoDoCartao = estadoDoCartao;
     }
+
+    public void alterarNotificacaoDeAviso(NotificacaoDeAviso notificacaoDeAviso){this.notificacaoDeAviso = notificacaoDeAviso; }
 }

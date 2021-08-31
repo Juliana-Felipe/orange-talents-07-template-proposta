@@ -49,21 +49,25 @@ public class BucarNumeroDoCartao {
                 elegivel.atualizaCartao(cartao);
                 elegivel.atualizaResultadoAvaliacao(ResultadoSolicitacao.CARTAO_ENCONTRADO);
                 propostaRepository.save(elegivel);
-                instanciandoEntitys(cartaoResponse, cartao);
+                instanciandoEntitys(cartaoResponse, cartao, cartaoRepository);
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
     }
 
-    private void instanciandoEntitys(DadosCartaoResponse cartaoResponse, Cartao cartao) {
+    private void instanciandoEntitys(DadosCartaoResponse cartaoResponse, Cartao cartao, CartaoRepository cartaoRepository) {
         for (int i = 0; i < cartaoResponse.getAvisos().size(); i++) {
             Aviso aviso = new Aviso(cartaoResponse.getAvisos().get(i), cartao);
+            cartao.alterarNotificacaoDeAviso(NotificacaoDeAviso.AVISO_GERADO);
             avisoRepository.save(aviso);
+            cartaoRepository.save(cartao);
         }
         for (int i = 0; i < cartaoResponse.getBloqueios().size(); i++) {
             Bloqueio bloqueio = new Bloqueio(cartaoResponse.getBloqueios().get(i), cartao);
+            cartao.alterarEstadoDoCartao(EstadoDoCartao.BLOQUEADO);
             bloqueioRepository.save(bloqueio);
+            cartaoRepository.save(cartao);
         }
         for (int i = 0; i < cartaoResponse.getCarteiras().size(); i++) {
             Carteira carteira = new Carteira(cartaoResponse.getCarteiras().get(i), cartao);

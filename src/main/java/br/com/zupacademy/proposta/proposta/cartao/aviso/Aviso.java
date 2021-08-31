@@ -7,6 +7,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.time.LocalDateTime;
 import java.util.Date;
 
@@ -15,6 +16,7 @@ public class Aviso {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private Date validoAte;
     private String destino;
     private LocalDateTime momentoDoAviso;
@@ -45,6 +47,14 @@ public class Aviso {
 
     public Cartao getCartao() {
         return cartao;
+    }
+
+    public Date getValidoAte() {
+        return validoAte;
+    }
+
+    public String getDestino() {
+        return destino;
     }
 
     public Object getId() {
