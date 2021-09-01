@@ -5,6 +5,8 @@ import br.com.zupacademy.proposta.proposta.cartao.aviso.Aviso;
 import br.com.zupacademy.proposta.proposta.cartao.aviso.AvisoRepository;
 import br.com.zupacademy.proposta.proposta.cartao.bloqueio.Bloqueio;
 import br.com.zupacademy.proposta.proposta.cartao.bloqueio.BloqueioRepository;
+import br.com.zupacademy.proposta.proposta.cartao.carteira.Carteira;
+import br.com.zupacademy.proposta.proposta.cartao.carteira.CarteiraRepository;
 import br.com.zupacademy.proposta.proposta.client.avaliacaoFinanceira.ResultadoSolicitacao;
 import br.com.zupacademy.proposta.proposta.proposta.Proposta;
 import br.com.zupacademy.proposta.proposta.proposta.PropostaRepository;

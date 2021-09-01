@@ -3,7 +3,6 @@ package br.com.zupacademy.proposta.proposta.cartao.bloqueio;
 import br.com.zupacademy.proposta.proposta.cartao.CartaoRepository;
 import br.com.zupacademy.proposta.proposta.cartao.EstadoDoCartao;
 import br.com.zupacademy.proposta.proposta.client.avisoBloqueio.AvisarBloqueio;
-import br.com.zupacademy.proposta.proposta.client.avisoBloqueio.Avisartest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,7 +13,7 @@ public class BloqueioController {
     private CartaoRepository cartaoRepository;
     private AvisarBloqueio avisarBloqueio;
 
-    public BloqueioController(BloqueioRepository bloqueioRepository, CartaoRepository cartaoRepository, AvisarBloqueio avisarBloqueio, Avisartest avisartest) {
+    public BloqueioController(BloqueioRepository bloqueioRepository, CartaoRepository cartaoRepository, AvisarBloqueio avisarBloqueio) {
         this.bloqueioRepository = bloqueioRepository;
         this.cartaoRepository = cartaoRepository;
         this.avisarBloqueio = avisarBloqueio;
