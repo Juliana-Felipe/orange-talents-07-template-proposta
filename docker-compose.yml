@@ -22,28 +22,32 @@ services:
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: "1"
       KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
 
-#  apipropostas:
-#    image: 'julianamtf/propostas'
-#    ports:
-#      - 8081:8080
-#    depends_on:
-#      - postgres-proposta
-#    environment:
-#      PROFILE: prod
-#      AVALIACAO_FINANCEIRA_API_URL: http://analise:9999/api
-#      CONSULTA_CARTAO_API_URL: http://contas:8888/api
-#      DB_HOST: postgresproposta
-#      DB_PORT: 5432
-#      DB_NAME: proposta
-#      DB_USER: admin
-#      DB_PASS: 123
-#      KEYCLOAK_ISSUER_URI: http://keycloak:8080/auth/realms/proposta
-#      KEYCLOAK_JWKS_URI: http://keycloak:8080/auth/realms/proposta/protocol/openid-connect/certs
-#      ENDPOINTS_EXPOSTOS_INCLUIR=health,info,metrics,prometheus
-#      ENDPOINTS_EXPOSTOS_EXCLUIR=env, beans
-#      HABILITAR_PROMETHEUS=true
-#      NOME_DA_APLICACAO=serviço de proposta producao
-#      AMBIENTE=desenvolvimento
+  apipropostas:
+    image: 'julianamtf/propostas'
+    container_name: api
+    ports:
+      - 8080:8080
+    depends_on:
+      - postgres-proposta
+    environment:
+      PROFILE: prod
+      AVALIACAO_FINANCEIRA_API_URL: http://analise:9999/api
+      CONSULTA_CARTAO_API_URL: http://contas:8888/api
+      DB_HOST: postgres-proposta
+      DB_PORT: 5432
+      DB_NAME: proposta
+      DB_USER: admin
+      DB_PASS: 123
+      KEYCLOAK_ISSUER_URI: http://keycloak:8080/auth/realms/proposta
+      KEYCLOAK_JWKS_URI: http://keycloak:8080/auth/realms/proposta/protocol/openid-connect/certs
+      ENDPOINTS_EXPOSTOS_INCLUIR: health,info,metrics,prometheus
+      ENDPOINTS_EXPOSTOS_EXCLUIR: env, beans
+      HABILITAR_PROMETHEUS: true
+      NOME_DA_APLICACAO: apipropostas
+      AMBIENTE: desenvolvimento
+      JAEGER_ENABLED: true
+      JAEGER_ENDPOINT: http://jaeger:14268/api/traces
+      JAEGER_SAMPLER: 1
 
   postgres:
     image: 'postgres:9.6-alpine'
@@ -144,8 +148,9 @@ services:
 
   prometheus:
     image: prom/prometheus:v2.22.0
+    container_name: prometheus
     volumes:
-      #  - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
       - prometheus-volume:/etc/prometheus/
     ports:
       - "9090:9090"
@@ -154,6 +159,8 @@ services:
     image: grafana/grafana:7.3.4
     volumes:
       - grafana-volume:/var/lib/grafana
+      - ./grafana/:/etc/grafana/provisioning/
+
     ports:
       - "3000:3000"
     depends_on:
