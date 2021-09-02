@@ -39,7 +39,7 @@ public class BucarNumeroDoCartao {
     }
 
     @Scheduled(fixedDelay = 30000)
-    private void atribuirCartao() {
+    public void atribuirCartao() {
         List<Proposta> elegiveis = propostaRepository.findByResultadoAvalicacao(ResultadoAvalicacao.ELEGIVEL);
 
         for (Proposta elegivel : elegiveis) {
@@ -58,7 +58,7 @@ public class BucarNumeroDoCartao {
         }
     }
 
-    private void instanciandoEntitys(DadosCartaoResponse cartaoResponse, Cartao cartao, CartaoRepository cartaoRepository) {
+    public void instanciandoEntitys(DadosCartaoResponse cartaoResponse, Cartao cartao, CartaoRepository cartaoRepository) {
         for (int i = 0; i < cartaoResponse.getAvisos().size(); i++) {
             Aviso aviso = new Aviso(cartaoResponse.getAvisos().get(i), cartao);
             cartao.alterarNotificacaoDeAviso(NotificacaoDeAviso.AVISO_GERADO);

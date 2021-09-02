@@ -42,6 +42,10 @@ public class Carteira {
         this.cartao = cartao;
     }
 
+    public long getId() {
+        return id;
+    }
+
     public String getEmail() {
         return email;
     }

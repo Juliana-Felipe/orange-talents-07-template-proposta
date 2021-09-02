@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
+import java.net.URI;
 
 @RestController
 @RequestMapping("cartao/{id}/carteira")
@@ -26,7 +27,8 @@ private AssociarCarteira associarCarteira;
         Carteira carteira = request.convert(carteiraRepository, id, cartaoRepository);
         carteiraRepository.save(carteira);
         associarCarteira.associacaoImediata(carteira);
-        return ResponseEntity.ok().build();
+        URI uri = uriComponentsBuilder.path("cartao/{id}/carteira/{id_Carteira}").buildAndExpand(carteira.getCartao().getId(), carteira.getId()).toUri();
+        return ResponseEntity.created(uri).build();
 
     }
 }

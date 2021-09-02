@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import static com.fasterxml.jackson.annotation.JsonCreator.Mode.PROPERTIES;
 
 public class AvisoBloqueioResponse {
+
     private ResultadoAvisoBloqueio resultado;
 
     @JsonCreator(mode=PROPERTIES)

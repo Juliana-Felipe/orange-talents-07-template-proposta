@@ -40,7 +40,7 @@ public class GerarAvaliacao {
     }
 
     @Scheduled(fixedDelay = 30000)
-    private void atribuirAvaliacao() {
+    public void atribuirAvaliacao() {
         AvaliacaoFinanceiraResponse response = null;
         List<Proposta> listaEmEspera = propostaRepository.findByResultadoAvalicacao(ResultadoAvalicacao.EM_ESPERA);
         for (Proposta proposta : listaEmEspera) {

@@ -1,4 +1,4 @@
-package br.com.zupacademy.proposta.proposta.proposta.config;
+package br.com.zupacademy.proposta.proposta.config;
 
 public class ErroDTO {
     private String campo;

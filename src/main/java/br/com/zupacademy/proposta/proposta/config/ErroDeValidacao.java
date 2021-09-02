@@ -1,6 +1,5 @@
-package br.com.zupacademy.proposta.proposta.proposta.config;
+package br.com.zupacademy.proposta.proposta.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpStatus;

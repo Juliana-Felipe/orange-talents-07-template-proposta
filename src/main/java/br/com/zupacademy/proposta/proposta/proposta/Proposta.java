@@ -2,7 +2,7 @@ package br.com.zupacademy.proposta.proposta.proposta;
 
 import br.com.zupacademy.proposta.proposta.cartao.Cartao;
 import br.com.zupacademy.proposta.proposta.client.avaliacaoFinanceira.ResultadoSolicitacao;
-import br.com.zupacademy.proposta.proposta.proposta.config.CPFOrCNPJ;
+import br.com.zupacademy.proposta.proposta.config.CPFOrCNPJ;
 
 import javax.persistence.*;
 import javax.validation.Valid;

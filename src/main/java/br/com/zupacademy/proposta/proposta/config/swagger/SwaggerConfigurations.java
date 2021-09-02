@@ -1,4 +1,4 @@
-package br.com.zupacademy.proposta.proposta.proposta.config.swagger;
+package br.com.zupacademy.proposta.proposta.config.swagger;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
