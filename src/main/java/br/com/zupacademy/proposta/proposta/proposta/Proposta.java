@@ -2,7 +2,8 @@ package br.com.zupacademy.proposta.proposta.proposta;
 
 import br.com.zupacademy.proposta.proposta.cartao.Cartao;
 import br.com.zupacademy.proposta.proposta.client.avaliacaoFinanceira.ResultadoSolicitacao;
-import br.com.zupacademy.proposta.proposta.config.CPFOrCNPJ;
+import br.com.zupacademy.proposta.proposta.criptografia.Criptografia;
+
 
 import javax.persistence.*;
 import javax.validation.Valid;
@@ -14,12 +15,12 @@ public class Proposta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @CPFOrCNPJ
     @NotBlank
     @Column(unique = true)
     private String documento;
     @Email
     @NotBlank
+    @Column(unique = true)
     private String email;
     @NotBlank
     private String nome;
@@ -35,8 +36,10 @@ public class Proposta {
     @JoinColumn
     private Cartao cartao;
 
+
      public Proposta(String documento, String email, String nome, Endereco endereco, BigDecimal salario) {
-        this.documento = documento;
+         Criptografia criptografia = new Criptografia();
+        this.documento = criptografia.criptografar(documento);
         this.email = email;
         this.nome = nome;
         this.endereco = endereco;

@@ -1,5 +1,7 @@
 package br.com.zupacademy.proposta.proposta.proposta;
 
+import br.com.zupacademy.proposta.proposta.criptografia.Criptografia;
+
 import java.math.BigDecimal;
 
 public class PropostaResponse {
@@ -16,8 +18,9 @@ public class PropostaResponse {
 
 
     public PropostaResponse(Proposta proposta) {
+        Criptografia criptografia = new Criptografia();
         this.id = proposta.getId();
-        this.documento = proposta.getDocumento();
+        this.documento = criptografia.descriptografar(proposta.getDocumento());
         this.email = proposta.getEmail();
         this.nome = proposta.getNome();
         this.endereco = proposta.getEndereco();

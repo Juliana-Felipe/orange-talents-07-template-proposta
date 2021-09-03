@@ -10,7 +10,7 @@ import javax.validation.Valid;
 import java.net.URI;
 
 @RestController
-@RequestMapping("cartao/{id}/carteira")
+@RequestMapping("/cartao/{id}/carteira")
 public class CarteiraController {
 private CarteiraRepository carteiraRepository;
 private CartaoRepository cartaoRepository;
@@ -27,7 +27,7 @@ private AssociarCarteira associarCarteira;
         Carteira carteira = request.convert(carteiraRepository, id, cartaoRepository);
         carteiraRepository.save(carteira);
         associarCarteira.associacaoImediata(carteira);
-        URI uri = uriComponentsBuilder.path("cartao/{id}/carteira/{id_Carteira}").buildAndExpand(carteira.getCartao().getId(), carteira.getId()).toUri();
+        URI uri = uriComponentsBuilder.path("/cartao/{id}/carteira/{id_Carteira}").buildAndExpand(carteira.getCartao().getId(), carteira.getId()).toUri();
         return ResponseEntity.created(uri).build();
 
     }

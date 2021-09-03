@@ -1,20 +1,21 @@
 package br.com.zupacademy.proposta.proposta.client.consultaCartao;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class AvisoResponse {
-     private Date validoAte;
+     private LocalDate validoAte;
      private String destino;
 
      public AvisoResponse() {
      }
 
-     public AvisoResponse(Date validoAte, String destino) {
+     public AvisoResponse(LocalDate validoAte, String destino) {
           this.validoAte = validoAte;
           this.destino = destino;
      }
 
-     public Date getValidoAte() {
+     public LocalDate getValidoAte() {
           return validoAte;
      }
 

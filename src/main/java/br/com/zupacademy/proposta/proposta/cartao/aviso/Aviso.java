@@ -8,6 +8,7 @@ import javax.validation.constraints.Future;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 
@@ -17,7 +18,7 @@ public class Aviso {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Date validoAte;
+    private LocalDate validoAte;
     private String destino;
     private LocalDateTime momentoDoAviso;
     @ManyToOne
@@ -36,7 +37,7 @@ public class Aviso {
         this.momentoDoAviso = LocalDateTime.now();
      }
 
-    public Aviso(@Future Date validoAte, @NotBlank String destino, @NotNull Cartao cartao, String userAgent, String ipUsuário) {
+    public Aviso(@Future LocalDate validoAte, @NotBlank String destino, @NotNull Cartao cartao, String userAgent, String ipUsuário) {
         this.validoAte = validoAte;
         this.destino = destino;
         this.momentoDoAviso = LocalDateTime.now();
@@ -49,7 +50,7 @@ public class Aviso {
         return cartao;
     }
 
-    public Date getValidoAte() {
+    public LocalDate getValidoAte() {
         return validoAte;
     }
 

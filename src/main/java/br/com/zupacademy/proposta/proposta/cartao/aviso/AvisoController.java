@@ -9,6 +9,8 @@ import br.com.zupacademy.proposta.proposta.cartao.bloqueio.BloqueioRequest;
 import br.com.zupacademy.proposta.proposta.client.avisoAvisoDeViagem.AvisarSobreAvisoDeViagem;
 import br.com.zupacademy.proposta.proposta.client.avisoBloqueio.AvisarBloqueio;
 import br.com.zupacademy.proposta.proposta.client.avisoBloqueio.AvisoBloqueioRequest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -23,6 +25,8 @@ public class AvisoController {
     private CartaoRepository cartaoRepository;
     private AvisoRepository avisoRepository;
     private AvisarSobreAvisoDeViagem avisarSobreAvisoDeViagem;
+
+    private final Logger logger = LoggerFactory.getLogger(AvisoController.class);
 
     public AvisoController(CartaoRepository cartaoRepository, AvisoRepository avisoRepository, AvisarSobreAvisoDeViagem avisarSobreAvisoDeViagem) {
         this.cartaoRepository = cartaoRepository;
@@ -40,7 +44,7 @@ public class AvisoController {
         aviso.getCartao().alterarNotificacaoDeAviso(NotificacaoDeAviso.AVISO_SOLICITADO);
         avisarSobreAvisoDeViagem.avisoImediato(aviso);
         avisoRepository.save(aviso);
-
+        logger.info("method = cadastraAviso, msg = Cadastrando aviso de viagem do cartao: {}", id);
         URI uri = uriComponentsBuilder.path("/cartao/{id}/avisos/{id_Aviso}").buildAndExpand(aviso.getCartao().getId(), aviso.getId()).toUri();
         return ResponseEntity.ok(uri);
     }

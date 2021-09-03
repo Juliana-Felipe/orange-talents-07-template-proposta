@@ -1,7 +1,9 @@
 package br.com.zupacademy.proposta.proposta.proposta;
 
-import br.com.zupacademy.proposta.proposta.config.CPFOrCNPJ;
+import br.com.zupacademy.proposta.proposta.config.validacoes.CPFOrCNPJ;
+import br.com.zupacademy.proposta.proposta.config.validacoes.UniqueValue;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import org.checkerframework.common.aliasing.qual.Unique;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -16,6 +18,7 @@ public class PropostaRequest {
     private String documento;
     @Email
     @NotBlank
+    @UniqueValue(fieldName = "email", domainClass = Proposta.class)
     private String email;
     @NotBlank
     private String nome;

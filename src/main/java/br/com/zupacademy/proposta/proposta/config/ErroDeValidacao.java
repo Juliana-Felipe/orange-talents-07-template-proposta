@@ -25,12 +25,11 @@ public class ErroDeValidacao {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public List<ErroDTO> handle(MethodArgumentNotValidException exception) {
         List<ErroDTO> dto = new ArrayList<>();
-
         List<FieldError> fieldErrors = exception.getBindingResult().getFieldErrors();
         fieldErrors.forEach(e -> {
             String mensagem = messageSource.getMessage(e, LocaleContextHolder.getLocale());
-            ErroDTO erro = new ErroDTO(e.getField(), mensagem);
-            dto.add(erro);
+            ErroDTO erroDTO = new ErroDTO(e.getField(), mensagem);
+            dto.add(erroDTO);
         });
         return dto;
     }

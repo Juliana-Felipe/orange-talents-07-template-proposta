@@ -1,28 +1,30 @@
 package br.com.zupacademy.proposta.proposta.client.avisoAvisoDeViagem;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
+import javax.validation.constraints.Pattern;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 
 public class AvisoDeViagemRequest {
-    SimpleDateFormat formatador = new SimpleDateFormat("yyyy-MM-dd");
 
     private String destino;
-    private String validoAte;
+    @JsonFormat(pattern = "yyyy-MM-dd", shape = JsonFormat.Shape.STRING)
+    private LocalDate validoAte;
 
     @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
-    public AvisoDeViagemRequest(String destino, Date validoAte) {
+    public AvisoDeViagemRequest(String destino, LocalDate validoAte) {
         this.destino = destino;
-        String data = formatador.format(validoAte);
-        this.validoAte = data;
+        this.validoAte = validoAte;
     }
 
     public String getDestino() {
         return destino;
     }
 
-    public String getValidoAte() {
+    public LocalDate getValidoAte() {
         return validoAte;
     }
 }
